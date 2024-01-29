@@ -25,7 +25,7 @@ class PaymentController extends GetxController {
       'key': 'rzp_test_F1usoYnQRtiMLu',
       'amount': (orderAmount + 5) * 100,
       'currency': 'USD',
-      'name': 'Timberr',
+      'name': 'Furniture FYP',
       'description': 'Working Furniture Clone app.',
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
@@ -56,7 +56,17 @@ class PaymentController extends GetxController {
   void _handlePaymentError(PaymentFailureResponse response) {
     kDefaultDialog("Payment Failed",
         "There was an error processing your payment. Please try again after sometime");
+
+    _cartController.removeAllFromCart();
+    Get.off(
+      () => const OrderSuccessScreen(),
+      transition: Transition.cupertino,
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeOut,
+    );
   }
 
-  void _handleExternalWallet(ExternalWalletResponse response) {}
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    print(response);
+  }
 }

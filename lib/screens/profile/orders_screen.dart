@@ -44,10 +44,10 @@ class OrdersScreen extends StatelessWidget {
                 const EdgeInsets.only(left: 16, right: 16, top: 43),
             tabs: const [
               Tab(
-                text: "Delivered",
+                text: "Processing",
               ),
               Tab(
-                text: "Processing",
+                text: "Delivered",
               ),
               Tab(
                 text: "Cancelled",
