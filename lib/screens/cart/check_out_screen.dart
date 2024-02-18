@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furniturefyp/controllers/cod_controller.dart';
 import 'package:get/get.dart';
 import '/constants.dart';
 import '/controllers/address_controller.dart';
@@ -16,6 +17,7 @@ class CheckOutScreen extends StatelessWidget {
   final AddressController _addressController = Get.find();
   final CardDetailsController _cardDetailController = Get.find();
   final _paymentController = Get.put(PaymentController());
+  final _codController = Get.put(CODController());
   void _toShippingAddressScreen() {
     Get.to(
       () => const ShippingAddressScreen(),
@@ -44,6 +46,18 @@ class CheckOutScreen extends StatelessWidget {
       return;
     }
     _paymentController.openCheckout(orderAmount);
+  }
+
+  void _openCODCheckout() {
+    if (_addressController.addressList.isEmpty) {
+      kDefaultDialog("No Address Added", "Please add an address to proceed");
+      return;
+    }
+    if (_cardDetailController.cardDetailList.isEmpty) {
+      kDefaultDialog("No Card Added", "Please add a Card to proceed");
+      return;
+    }
+    _codController.handlePaymentSuccess();
   }
 
   @override
@@ -282,6 +296,11 @@ class CheckOutScreen extends StatelessWidget {
             CustomElevatedButton(
               onTap: _openCheckout,
               text: 'Submit Order',
+            ),
+            const Spacer(),
+            CustomElevatedButton(
+              onTap: _openCODCheckout,
+              text: 'Cash On Delivery',
             ),
             const Spacer(),
           ],

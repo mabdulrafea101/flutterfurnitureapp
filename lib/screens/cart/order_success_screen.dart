@@ -15,7 +15,7 @@ class OrderSuccessScreen extends StatelessWidget {
     Get.back();
   }
 
-  void _offToOrderScreen() {
+  void  _offToOrderScreen() {
     Get.back();
     Get.back();
     Get.to(
@@ -79,7 +79,7 @@ class OrderSuccessScreen extends StatelessWidget {
                 const Spacer(),
                 CustomElevatedButton(
                   onTap: _offToOrderScreen,
-                  text: "TRACK YOUR ORDERS",
+                  text: "VIEW ORDERS",
                 ),
                 const Spacer(),
                 SizedBox(
@@ -88,7 +88,8 @@ class OrderSuccessScreen extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: _offToHome,
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: kOffBlack, side: const BorderSide(color: kOffBlack),
+                      foregroundColor: kOffBlack,
+                      side: const BorderSide(color: kOffBlack),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
